@@ -1,0 +1,59 @@
+
+
+
+       Save Code
+
+
+       SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("insert into attendance values(@aid,@studentname,@status)", con);
+            cmd.Parameters.AddWithValue("@AID", int.Parse(textBox1.Text));
+            cmd.Parameters.AddWithValue("@StudentName", textBox2.Text);
+            cmd.Parameters.AddWithValue("@Status", textBox3.Text);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Saved Successfully");
+
+
+
+ 
+
+        Add Code
+
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from attendance", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+
+
+
+
+       Delete Code
+
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("delete attendance where aid=@aid", con);
+            cmd.Parameters.AddWithValue("@AID", int.Parse(textBox1.Text));
+            
+            cmd.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted Successfully");
+
+
+
+
+       Attendance Load Code
+
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True");
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from attendance", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
